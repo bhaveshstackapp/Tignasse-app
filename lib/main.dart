@@ -23,11 +23,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: StringRes.roboto,
-          primarySwatch: ColorRes.white,
-          buttonTheme: ButtonThemeData(
+//          primarySwatch: ColorRes.white,
+          /*buttonTheme: ButtonThemeData(
             buttonColor: ColorRes.black, //  <-- dark color
             //  <-- this auto selects the right color
-          )),
+          )*/
+      ),
       home: SplashScreen(),
     );
   }

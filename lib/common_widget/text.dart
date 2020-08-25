@@ -11,6 +11,8 @@ class AllText extends StatelessWidget {
   final double opacity;
   final TextOverflow overflow;
   final double letterSpace;
+  final String fontFamily;
+  final FontStyle fontStyle;
 
 
   AllText(this.title,
@@ -22,6 +24,8 @@ class AllText extends StatelessWidget {
         this.height,
         this.overflow,
         this.letterSpace = 0,
+        this.fontFamily,
+        this.fontStyle,
         this.color = ColorRes.lightGrey});
 
   @override
@@ -34,8 +38,8 @@ class AllText extends StatelessWidget {
       style: TextStyle(
         color: color.withOpacity(opacity),
         letterSpacing: letterSpace,
-        fontFamily: StringRes.roboto,
-//        fontFamily: 'Helvetica',
+        fontFamily: fontFamily ?? StringRes.roboto,
+        fontStyle:  fontStyle ?? FontStyle.normal,
         fontWeight: fontWeight ?? FontWeight.normal,
         fontSize: fontSize,
         height: height,

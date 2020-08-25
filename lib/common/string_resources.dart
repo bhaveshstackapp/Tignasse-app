@@ -6,15 +6,34 @@ AppState appState = AppState();
 class StringRes {
 
   //font family
-  static const roboto                        =  "Roboto";
+  static const roboto                          =  "Roboto";
+  static const robotoCondensed                 =  "RobotoCondensed";
+
+  //Splash screen
+  static const tignasse                        =  "Tignasse";
+  static const appTitle                        =  "Tignass App";
+  static const applicationTignasse             =  "Application Tignasse Welcome";
+  static const connect                         =  "CONNECT";
 
 
+  //Login Screen
+  static const imLogin                         =  "i'm login";
+  static const email                           =  "Email";
+  static const password                        =  "Password";
+  static const validate                        =  "VALIDATE";
+  static const iRegisterOnline                 =  "or I register online";
+  static const onWebSite                       =  "on www.tignasse.fr or";
+  static const createAccount                   =  "Create Account";
 
-  //splash screen
-  static const appTitle                      =  "Tignass App";
-  static const titleSplash                   =  "More singles who are more your style";
-  static const subTitleSplash                =  "30,00,000 singles worldwide and 3 milion messages sent daily";
-  static const loginText                     =  "Login";
+  //Register Screen
+  static const firstName                       =  "First Name";
+  static const lastName                        =  "Lats Name";
+  static const company                         =  "Comapany";
+  static const conformPassWord                 =  "ConformPassWord";
+  static const iRegister                       =  "I register(free registration)";
+  static const createCustom                    =  "Create custome account sur www.tignasse.fr";
+  static const creat                           =  "";
+
 
 
 }

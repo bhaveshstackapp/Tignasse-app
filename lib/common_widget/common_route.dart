@@ -13,8 +13,12 @@ navigatorPop(BuildContext context) {
   Navigator.pop(context);
 }
 
-logInScreenNavigator(BuildContext context, int i) {
+logInScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
-//  Navigator.push(
-//      context, MaterialPageRoute(builder: (context) => LoginScreen(i: i)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+}
+
+registerScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
 }

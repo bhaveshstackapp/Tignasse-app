@@ -30,8 +30,13 @@ class FilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height ?? 50,
-        width: width ?? double.infinity,
+        height: height ?? Utils.getDeviceWidth(context) / 12,
+//        width: width ?? double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 3, vertical: 0),
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: ColorRes.white),
+          borderRadius: BorderRadius.all(Radius.circular(8))
+        ),
         child: _button());
   }
 
@@ -39,7 +44,7 @@ class FilledButton extends StatelessWidget {
     return RaisedButton(
       focusNode: focusNode,
 
-      disabledColor: disabledColor ?? ColorRes.lightGrey,
+      disabledColor: disabledColor ?? ColorRes.black,
       disabledTextColor: disabledTextColor ?? Colors.white,
       highlightElevation: 0,
       onPressed: onPressed,
