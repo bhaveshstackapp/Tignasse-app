@@ -32,8 +32,14 @@ class StringRes {
   static const conformPassWord                 =  "ConformPassWord";
   static const iRegister                       =  "I register(free registration)";
   static const createCustom                    =  "Create custome account sur www.tignasse.fr";
+
+  //Welcome
+  static const livingRoom                      =  "Living Room";
+  static const welcome                         =  "WELCOME";
   static const creat                           =  "";
 
+  //menu screen
+  static const salonTignasse                   =  "Salon Tignasse";
 
 
 }

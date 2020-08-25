@@ -56,7 +56,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: Utils.getDeviceWidth(context) / 20),
               FilledButton(
                   text: StringRes.validate,
-                  fontSize: Utils.getDeviceWidth(context) / 23),
+                  fontSize: Utils.getDeviceWidth(context) / 23,
+                  onPressed: () {
+                    welComeScreenNavigator(context);
+                  },
+              ),
 
               CommonView.sizeBoxHeight(context, 35),
 
