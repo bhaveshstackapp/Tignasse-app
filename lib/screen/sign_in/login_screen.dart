@@ -1,4 +1,3 @@
-import 'package:tignasseapp/common_widget/validation.dart';
 import 'package:tignasseapp/export.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,8 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: CommonView.closeIcons(context),
                     ),
                     CommonView.sizeBoxHeight(context, 12),
-                    AllText(StringRes.tignasse,
-                        fontSize: Utils.getDeviceWidth(context) / 13),
+                    AllText(StringRes.tignasse, fontSize: Utils.getDeviceWidth(context) / 13),
                     CommonView.sizeBoxHeight(context, 15),
                     AllText(StringRes.imLogin,
                         fontSize: Utils.getDeviceWidth(context) / 20),

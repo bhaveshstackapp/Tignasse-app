@@ -31,3 +31,7 @@ menuScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
   Navigator.push(context, MaterialPageRoute(builder: (context) => MenuScreen()));
 }
+addPasswordScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => AddPasswordScreen()));
+}

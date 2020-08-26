@@ -15,5 +15,7 @@ export 'package:tignasseapp/common_widget/filled_button.dart';
 export 'package:tignasseapp/screen/sign_up/sign_up_screen.dart';
 export 'package:tignasseapp/screen/welcome/welcome_screen.dart';
 export 'package:tignasseapp/screen/menu/menu_screen.dart';
+export 'package:tignasseapp/screen/add_my_password/add_password_screen.dart';
+export 'package:tignasseapp/common_widget/validation.dart';
 
 export 'dart:io';

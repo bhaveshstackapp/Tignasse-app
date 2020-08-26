@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:tignasseapp/export.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -6,6 +7,19 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+
+  bool isBottomLineShow = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+//    SystemChrome.setPreferredOrientations([
+//      DeviceOrientation.portraitUp,
+//      DeviceOrientation.portraitDown,
+//    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,57 +73,53 @@ class _MenuScreenState extends State<MenuScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
 
                       children: <Widget>[
+                        titleTextShow(StringRes.books, StringRes.tignasse, 1),
+                        verticalLine(),
                         Expanded(
                             flex: 1,
-                            child: AllText("Test", fontSize: 30, align: TextAlign.center)),
-                        Container(
-                          height: 100,
-                          width: 2,
-                          color: ColorRes.white,
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: AllText("Test", fontSize: 30, align: TextAlign.center)),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 2,
-                            margin: EdgeInsets.only(left: 25, right: 15, top: 25, bottom: 25),
-                            color: ColorRes.white,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 2,
-                            margin: EdgeInsets.only(left: 15, right: 25),
-
-                            color: ColorRes.white,
-                          ),
+                            child: Column(
+                              children: [
+                                AllText(StringRes.findA, fontSize: Utils.getDeviceWidth(context) / 18, align: TextAlign.center, color: ColorRes.lightGrey),
+                                AllText(StringRes.look, fontSize: Utils.getDeviceWidth(context) / 11, align: TextAlign.center, color: ColorRes.white)
+                              ],
+                            )
                         )
+//                        titleTextShow(StringRes.findA, StringRes.look, ColorRes.lightGrey, ColorRes.white, 15, Utils.getDeviceWidth(context) / 11),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        horizontalLine(),
+                        horizontalLine()
                       ],
                     ),
 
                     Row(
                       children: <Widget>[
-                        Expanded(
-                            flex: 1,
-                            child: AllText("Test", fontSize: 30, align: TextAlign.center)),
-                        Container(
-                          height: 100,
-                          width: 2,
-                          color: ColorRes.white,
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: AllText("Test", fontSize: 30, align: TextAlign.center)),
+                        titleTextShow(StringRes.services, StringRes.andTarifs,2),
+                        verticalLine(),
+                        titleTextShow(StringRes.strokeHeart, StringRes.products,3),
                       ],
                     ),
 
+                    Visibility(
+                      visible: isBottomLineShow,
+                        child: Row(
+                      children: <Widget>[
+                        horizontalLine(),
+                        horizontalLine()
+                      ],
+                    )),
+
+                    Visibility(
+                        visible: isBottomLineShow,
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 100,
+                          width: 2,
+                          margin: EdgeInsets.only(left: 5, right: 5),
+                          color: ColorRes.white,
+                        ))
                   ],
                 ),
               ),
@@ -135,6 +145,45 @@ class _MenuScreenState extends State<MenuScreen> {
           color: ColorRes.white,
         ),
       ),
+    );
+  }
+
+  verticalLine() {
+    return Container(
+      height: 100,
+      width: 2,
+      margin: EdgeInsets.only(left: 5, right: 5),
+
+      color: ColorRes.white,
+    );
+  }
+
+  horizontalLine() {
+    return  Expanded(
+      flex: 1,
+      child: Container(
+        height: 2,
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(left: 25, right: 25, top: 30, bottom: 30),
+        color: ColorRes.white,
+      ),
+    );
+  }
+
+  titleTextShow(String title, String subTitle, int i) {
+    return  Expanded(
+        flex: 1,
+        child: InkResponse(
+          onTap: () {
+            addPasswordScreenNavigator(context);
+          },
+          child: Column(
+            children: [
+              AllText(title, fontSize: Utils.getDeviceWidth(context) / 11, align: TextAlign.center, color: ColorRes.white),
+              AllText(subTitle, fontSize: Utils.getDeviceWidth(context) / 18, align: TextAlign.center, color: ColorRes.lightGrey)
+            ],
+          ),
+        )
     );
   }
 }

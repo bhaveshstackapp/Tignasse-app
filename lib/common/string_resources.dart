@@ -40,6 +40,21 @@ class StringRes {
 
   //menu screen
   static const salonTignasse                   =  "Salon Tignasse";
+  static const books                           =  "BOOKS";
+  static const findA                           =  "Find a";
+  static const look                            =  "Look";
+  static const services                        =  "SERVICES";
+  static const andTarifs                       =  "& Tarifs";
+  static const strokeHeart                     =  "Stroke of Heart";
+  static const products                        =  "products";
+
+  //Add Password
+  static const appParam                        =  "APPLICATION PARAMETERS";
+  static const giveMyPassword                  =  "I give my password";
+  static const myCodeText                      =  "or I get my code on www.tignasse.fr \nand I access the features \ncustomization and configuration";
+  static const subscriptions                   =  "SUBSCRIPTIONS";
+  static const signOut                         =  "SIGN OUT";
+  static const conFirmer                       =  "CONFIRMER";
 
 
 }
