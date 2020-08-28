@@ -56,6 +56,14 @@ class StringRes {
   static const signOut                         =  "SIGN OUT";
   static const conFirmer                       =  "CONFIRMER";
 
+  //Books List
+  static const bookNotAvailable                =  "This Tignasse book is not available";
+
+  //Books Open
+  static const theCollections                  =  "THE COLLECTION AT YOUR FINGERTIPS";
+  static const thankYouApp                     =  "Thank you for using the Tignasse application!";
+  static const titleLine                       =  "Here, a title line \n and two customizable lines of text";
+
 
 }
 

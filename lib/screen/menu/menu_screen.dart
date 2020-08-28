@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:tignasseapp/export.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -175,7 +174,8 @@ class _MenuScreenState extends State<MenuScreen> {
         flex: 1,
         child: InkResponse(
           onTap: () {
-            addPasswordScreenNavigator(context);
+            booksListScreenNavigator(context);
+//            addPasswordScreenNavigator(context);
           },
           child: Column(
             children: [

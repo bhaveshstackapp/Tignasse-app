@@ -58,7 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   text: StringRes.validate,
                   fontSize: Utils.getDeviceWidth(context) / 23,
                   onPressed: () {
-                    welComeScreenNavigator(context);
+                    addPasswordScreenNavigator(context);
+//                    welComeScreenNavigator(context);
                   },
               ),
 

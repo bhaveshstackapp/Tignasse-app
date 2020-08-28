@@ -14,6 +14,10 @@ class Utils{
     return "assets/images/" + name + ".png";
   }
 
+  static getAssetsIcons(String name) {
+    return "assets/icons/" + name + ".png";
+  }
+
   /* static getNetworkImg(String name) {
     return "${RestApi().baseUrl}$name";
 //    return "https://safe-date.herokuapp.com$name";

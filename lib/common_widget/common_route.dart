@@ -1,5 +1,4 @@
 import 'package:tignasseapp/export.dart';
-
 class Routes {}
 
 /*goToAddQue(context){
@@ -34,4 +33,20 @@ menuScreenNavigator(BuildContext context) {
 addPasswordScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
   Navigator.push(context, MaterialPageRoute(builder: (context) => AddPasswordScreen()));
+}
+verificationCodeScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodeScreen()));
+}
+booksListScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => BooksListScreen()));
+}
+openBookScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => OpenBookScreen()));
+}
+openBookFullScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => OpenFullScreenBook()));
 }

@@ -1,3 +1,4 @@
+export 'dart:io';
 export 'package:flutter/material.dart';
 export 'package:tignasseapp/common/color_resources.dart';
 export 'package:tignasseapp/common/dependency_injection.dart';
@@ -15,7 +16,13 @@ export 'package:tignasseapp/common_widget/filled_button.dart';
 export 'package:tignasseapp/screen/sign_up/sign_up_screen.dart';
 export 'package:tignasseapp/screen/welcome/welcome_screen.dart';
 export 'package:tignasseapp/screen/menu/menu_screen.dart';
-export 'package:tignasseapp/screen/add_my_password/add_password_screen.dart';
+export 'package:tignasseapp/screen/password/add_my_password/add_password_screen.dart';
+export  'package:tignasseapp/screen/password/add_verification_code/verification_code_screen.dart';
 export 'package:tignasseapp/common_widget/validation.dart';
+export 'package:tignasseapp/screen/book/books_list/books_list.dart';
+//export 'package:flutter/services.dart';
+export 'package:cached_network_image/cached_network_image.dart';
+export 'package:tignasseapp/screen/book/open_book/open_book.dart';
+export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:tignasseapp/screen/book/open_book_layer/open_fullscreen_book.dart';
 
-export 'dart:io';

@@ -1,11 +1,11 @@
 import 'package:tignasseapp/export.dart';
 
-class AddPasswordScreen extends StatefulWidget {
+class VerificationCodeScreen extends StatefulWidget {
   @override
-  _AddPasswordScreenState createState() => _AddPasswordScreenState();
+  _VerificationCodeScreenState createState() => _VerificationCodeScreenState();
 }
 
-class _AddPasswordScreenState extends State<AddPasswordScreen> {
+class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
 
   TextEditingController passWordTextFiled = TextEditingController();
 
@@ -50,6 +50,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                     text: StringRes.validate,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
+                      welComeScreenNavigator(context);
                     },
                   ),
 
