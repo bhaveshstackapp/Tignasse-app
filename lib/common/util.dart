@@ -39,6 +39,11 @@ class Utils{
         backgroundColor: ColorRes.black,
         textColor: ColorRes.white);
   }
+
+  static getOrientation(BuildContext context) {
+    return MediaQuery.of(context).orientation;
+  }
+
 }
 
 openKeyBoard(BuildContext context, FocusNode focusNode) {

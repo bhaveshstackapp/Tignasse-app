@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:tignasseapp/export.dart';
+
+import '../../../common/util.dart';
 
 class OpenFullScreenBook extends StatefulWidget {
   @override
@@ -6,13 +9,24 @@ class OpenFullScreenBook extends StatefulWidget {
 }
 
 class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
-
-  List<String> stringRes = ["08 Etat de grace", "24 into the wild", "30 Tout en rousseur", "40 Fortes impressions", "48 Têtes chercheuses", "58 L’effet frange", "70 Accord majeur", "80 L’offensive des reflets", "90 Onde de chic"];
+  List<String> stringRes = [
+    "08 Etat de grace",
+    "24 into the wild",
+    "30 Tout en rousseur",
+    "40 Fortes impressions",
+    "48 Têtes chercheuses",
+    "58 L’effet frange",
+    "70 Accord majeur",
+    "80 L’offensive des reflets",
+    "90 Onde de chic"
+  ];
 
   bool isSideMenuShow = false;
+  bool istrue = false;
 
   @override
   Widget build(BuildContext context) {
+    istrue = Utils.getOrientation(context) == Orientation.portrait;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -26,7 +40,8 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
                 children: [
                   Padding(
                       padding: EdgeInsets.only(left: 15),
-                      child: AllText("SOMMAIRE", fontSize: 20, color: ColorRes.white)),
+                      child: AllText("SUMMARY",
+                          fontSize: 17, color: ColorRes.white)),
                   Align(
                     alignment: Alignment.topRight,
                     child: CommonView.closeIcons(context),
@@ -34,21 +49,21 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
                 ],
               ),
             ),
-
-
-            isSideMenuShow ? Container(
-              height: Utils.getDeviceHeight(context),
-              width: Utils.getDeviceWidth(context) / 2,
-              color: Colors.black.withOpacity(0.5),
-              margin: EdgeInsets.only(top: 70, bottom: 70),
-              padding: EdgeInsets.only(top: 10, left: 25),
-              child: ListView.builder(
-                  itemCount: 9,
-                  itemBuilder: (context, index) {
-                return AllText(stringRes[index], color: ColorRes.white, fontSize: 16);
-              }),
-            ) : Container(),
-
+            isSideMenuShow
+                ? Container(
+                    height: Utils.getDeviceHeight(context),
+                    width: Utils.getDeviceWidth(context) / 2,
+                    color: Colors.black.withOpacity(0.5),
+                    margin: EdgeInsets.only(top: 70, bottom: 70),
+                    padding: EdgeInsets.only(top: 10, left: 25),
+                    child: ListView.builder(
+                        itemCount: 9,
+                        itemBuilder: (context, index) {
+                          return AllText(stringRes[index],
+                              color: ColorRes.white, fontSize: 16);
+                        }),
+                  )
+                : Container(),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -57,18 +72,17 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                      Row(
-                        children: [
-                          SizedBox(width: 10),
-                          iconsShow("scap1", 1),
-                          SizedBox(width: 10),
-                          iconsShow("scap2", 2),
-                          SizedBox(width: 10),
-                          iconsShow("scap3", 3),
-                          SizedBox(width: 10),
-                        ],
-                      ),
-
+                    Row(
+                      children: [
+                        SizedBox(width: 10),
+                        iconsShow("scap1", 1),
+                        SizedBox(width: 10),
+                        iconsShow("scap2", 2),
+                        SizedBox(width: 10),
+                        iconsShow("scap3", 3),
+                        SizedBox(width: 10),
+                      ],
+                    ),
                     Row(
                       children: [
                         iconsShow("refresh", 4),
@@ -94,28 +108,24 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
 //    return ;
 //  }
 
-
   iconsShow(String icon, int i) {
     return InkResponse(
       onTap: () {
-
-        if(i == 1) {
+        if (i == 1) {
           isSideMenuShow = !isSideMenuShow;
           setState(() {});
-        } else if(i == 4) {
-
-
-        } else  {
-
-
-        }
-
+        } else if (i == 4) {
+        } else {}
       },
       child: Image(
-          height: Utils.getDeviceWidth(context) / 10,
-          width: Utils.getDeviceWidth(context) / 10,
+          height: istrue
+              ? Utils.getDeviceWidth(context) / 10
+              : Utils.getDeviceHeight(context) / 10,
+          width: istrue
+              ? Utils.getDeviceWidth(context) / 10
+              : Utils.getDeviceHeight(context) / 10,
           image: AssetImage(Utils.getAssetsIcons(icon))),
-    /*  child: Container(
+      /*  child: Container(
         height: Utils.getDeviceWidth(context) / 8,
         width: Utils.getDeviceWidth(context) / 8,
         decoration: BoxDecoration(

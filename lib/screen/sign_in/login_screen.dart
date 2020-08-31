@@ -1,4 +1,7 @@
 import 'package:tignasseapp/export.dart';
+import 'package:tignasseapp/services/rest_api/rest_api.dart';
+
+import '../../common/util.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -29,7 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: CommonView.closeIcons(context),
                     ),
                     CommonView.sizeBoxHeight(context, 12),
-                    AllText(StringRes.tignasse, fontSize: Utils.getDeviceWidth(context) / 13),
+                    AllText(StringRes.tignasse,
+                        fontSize: Utils.getDeviceWidth(context) / 13),
                     CommonView.sizeBoxHeight(context, 15),
                     AllText(StringRes.imLogin,
                         fontSize: Utils.getDeviceWidth(context) / 20),
@@ -42,7 +46,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: StringRes.validate,
                       fontSize: Utils.getDeviceWidth(context) / 23,
                       onPressed: () {
-                        if (_formKey.currentState.validate()) {}
+                        var jsonMap = {
+                          "email": emailTextFiled.text,
+                          "password": passWordTextFiled.text
+                        };
+                        if (_formKey.currentState.validate()) {
+                          //login api
+                          RestApi().callPostLogIn(jsonMap).then((value) {
+                            if (value.statusCode == 200) {
+                              Utils.showToast(value.body);
+                            }
+                          });
+                        }
                       },
                     ),
                     SizedBox(height: Utils.getDeviceWidth(context) / 10),
@@ -74,23 +89,23 @@ class _LoginScreenState extends State<LoginScreen> {
     return Stack(
       children: <Widget>[
         Container(
-          height: 50,
-          decoration: new BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: ColorRes.white,
-              border: new Border.all(color: Colors.black, width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(8))),
-          margin:
-              EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25)),
+            height: 50,
+            decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: ColorRes.white,
+                border: new Border.all(color: Colors.black, width: 1.0),
+                borderRadius: BorderRadius.all(Radius.circular(8))),
+            margin: EdgeInsets.symmetric(
+                horizontal: Utils.getDeviceWidth(context) / 25)),
 //          child:
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
-            child: TextFormField(
-                controller: emailTextFiled,
-                decoration: CommonView.textFiledDecoration(StringRes.email),
-                validator: validateEmail),
-          ),
-
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: Utils.getDeviceWidth(context) / 25),
+          child: TextFormField(
+              controller: emailTextFiled,
+              decoration: CommonView.textFiledDecoration(StringRes.email),
+              validator: validateEmail),
+        ),
       ],
     );
   }
@@ -105,19 +120,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: ColorRes.white,
                 border: new Border.all(color: Colors.black, width: 1.0),
                 borderRadius: BorderRadius.all(Radius.circular(8))),
-            margin:
-            EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25)),
+            margin: EdgeInsets.symmetric(
+                horizontal: Utils.getDeviceWidth(context) / 25)),
 //          child:
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
+          padding: EdgeInsets.symmetric(
+              horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
               controller: passWordTextFiled,
               decoration: CommonView.textFiledDecoration(StringRes.password),
               validator: validatePassword),
         ),
-
       ],
     );
   }
-
 }

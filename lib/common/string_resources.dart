@@ -18,7 +18,9 @@ class StringRes {
 
   //Login Screen
   static const imLogin                         =  "i'm login";
-  static const email                           =  "Email";
+  static const cndEmail                        =  "E-mail*";
+  static const email                           =  "E-mail";
+  static const cndPassword                     =  "Password*";
   static const password                        =  "Password";
   static const validate                        =  "VALIDATE";
   static const iRegisterOnline                 =  "or I register online";
@@ -26,12 +28,13 @@ class StringRes {
   static const createAccount                   =  "Create Account";
 
   //Register Screen
-  static const firstName                       =  "First Name";
-  static const lastName                        =  "Lats Name";
-  static const company                         =  "Comapany";
-  static const conformPassWord                 =  "ConformPassWord";
+  static const firstName                       =  "Firstname*";
+  static const lastName                        =  "Lastname*";
+  static const company                         =  "Company*";
+  static const conformPassWord                 =  "Conform passWord*";
   static const iRegister                       =  "I register(free registration)";
   static const createCustom                    =  "Create custome account sur www.tignasse.fr";
+  static const requireField                    =  "*Required fields";
 
   //Welcome
   static const livingRoom                      =  "Living Room";
