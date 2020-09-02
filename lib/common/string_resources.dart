@@ -51,6 +51,12 @@ class StringRes {
   static const strokeHeart                     =  "Stroke of Heart";
   static const products                        =  "products";
 
+  //Forgot password
+  static const forgotPassword                  =  "Forgot Password";
+  static const forgotPasswordVerification      =  "Forgot Password Verification";
+//  static const products                        =  "products";
+
+
   //Add Password
   static const appParam                        =  "APPLICATION PARAMETERS";
   static const giveMyPassword                  =  "I give my password";

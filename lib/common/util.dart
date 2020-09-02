@@ -55,6 +55,24 @@ hideFocusKeyBoard(c) {
   FocusScope.of(c).requestFocus(FocusNode());
 }
 
+BuildContext c;
+showLoader(context,{String label}){
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      c = context;
+      return LoaderPage(label: label);
+
+    },
+  );
+}
+
+hideLoader(){
+  Navigator.pop(c);
+}
+
+
 /*Future<bool> isConnectNetwork(BuildContext context) async {
   var connectivityResult = await connectivity.checkConnectivity();
   bool isConnect = getConnectionValue(connectivityResult);

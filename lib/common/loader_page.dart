@@ -25,7 +25,7 @@ class AddPromptPageState extends State<LoaderPage> {
 
   Widget appBar() {
     return Container(
-      height: 45,
+      height: 35,
       child: Material(
         color: Colors.white,
         child: Row(
@@ -60,7 +60,7 @@ class AddPromptPageState extends State<LoaderPage> {
                 child: Container(
                   color: Colors.white,
                   padding:
-                      EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 24),
+                      EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 0),
                   child: Column(
                     children: <Widget>[
                       Container(

@@ -1,20 +1,24 @@
 import 'package:tignasseapp/export.dart';
 
-class AddPasswordScreen extends StatefulWidget {
+class ForgotVerificationScreen extends StatefulWidget {
+
+  final int code;
+  const ForgotVerificationScreen({Key key, this.code}) : super(key: key);
+
   @override
-  AddPasswordScreenState createState() => AddPasswordScreenState();
+  ForgotVerificationScreenState createState() => ForgotVerificationScreenState();
 }
 
-class AddPasswordScreenState extends State<AddPasswordScreen> {
+class ForgotVerificationScreenState extends State<ForgotVerificationScreen> {
 
-  TextEditingController passWordTextFiled = TextEditingController();
+  TextEditingController verificationTextFiled = TextEditingController();
 
   bool isSignOutShow = true;
-//  ForgotPasswordViewModel model;
+  ForgotVerificationViewModel model;
 
   @override
   Widget build(BuildContext context) {
-//    model ?? (model = ForgotPasswordViewModel(this));
+    model ?? (model = ForgotVerificationViewModel(this));
 
     return SafeArea(
       child: Scaffold(
@@ -35,13 +39,13 @@ class AddPasswordScreenState extends State<AddPasswordScreen> {
                       color: ColorRes.white),
                   CommonView.sizeBoxHeight(context, 20),
 
-                  AllText(StringRes.appParam,
+                  AllText(StringRes.forgotPasswordVerification,
                       fontSize: Utils.getDeviceWidth(context) / 20,
                       color: ColorRes.white),
 
-                  AllText(StringRes.giveMyPassword,
-                      fontSize: Utils.getDeviceWidth(context) / 22,
-                      color: ColorRes.white),
+//                  AllText(StringRes.giveMyPassword,
+//                      fontSize: Utils.getDeviceWidth(context) / 22,
+//                      color: ColorRes.white),
 
                   CommonView.sizeBoxHeight(context, 20),
 
@@ -53,11 +57,21 @@ class AddPasswordScreenState extends State<AddPasswordScreen> {
                     text: StringRes.validate,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
-//                      verificationCodeScreenNavigator(context);
-                      if(passWordTextFiled.text.length != 0) {
+//                      if(passWordTextFiled.text.length != 0) {
 //                        model.forgotPasswordApi();
+//                      }
+
+                      if(widget.code.toString() == verificationTextFiled.text) {
+//                        welComeScreenNavigator(context);
+
+                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                           LoginScreen()), (Route<dynamic> route) => false);
+
+//                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelComeScreen()));
+                      } else {
+                        Utils.showToast("verification code incorrect");
                       }
-//                      booksListScreenNavigator(context);
+
                     },
                   ),
 
@@ -87,7 +101,7 @@ class AddPasswordScreenState extends State<AddPasswordScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
-              controller: passWordTextFiled,
+              controller: verificationTextFiled,
               decoration: CommonView.textFiledDecoration(StringRes.email),
               validator: validatePassword
           ),

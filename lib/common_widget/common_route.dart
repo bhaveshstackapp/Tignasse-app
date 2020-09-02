@@ -50,3 +50,11 @@ openBookFullScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
   Navigator.push(context, MaterialPageRoute(builder: (context) => OpenFullScreenBook()));
 }
+forgotPasswordScreenNavigator(BuildContext context) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordScreen()));
+}
+forgotVerificationScreenNavigator(BuildContext context , int code) {
+//  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotVerificationScreen(code: code)));
+}

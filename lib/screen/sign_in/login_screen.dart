@@ -1,28 +1,31 @@
 import 'package:tignasseapp/export.dart';
-import 'package:tignasseapp/services/rest_api/rest_api.dart';
 
 import '../../common/util.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTextFiled = TextEditingController();
   TextEditingController passWordTextFiled = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  LoginViewModel model;
+
   @override
   Widget build(BuildContext context) {
+    model ?? (model = LoginViewModel(this));
+
     return SafeArea(
       child: Scaffold(
         body: Form(
           key: _formKey,
           child: Stack(
             children: <Widget>[
-              SplashScreen(),
+              SplashScreen(screenName: PrefKeys.loginBgKey),
               CommonView.transparent(context, 0.7),
               SingleChildScrollView(
                 child: Column(
@@ -42,22 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     CommonView.sizeBoxHeight(context, 50),
                     passWordView(),
                     SizedBox(height: Utils.getDeviceWidth(context) / 20),
+
+                    forgotPassword(),
+
+                    SizedBox(height: Utils.getDeviceWidth(context) / 20),
                     FilledButton(
                       text: StringRes.validate,
                       fontSize: Utils.getDeviceWidth(context) / 23,
                       onPressed: () {
-                        var jsonMap = {
-                          "email": emailTextFiled.text,
-                          "password": passWordTextFiled.text
-                        };
-                        if (_formKey.currentState.validate()) {
-                          //login api
-                          RestApi().callPostLogIn(jsonMap).then((value) {
-                            if (value.statusCode == 200) {
-                              Utils.showToast(value.body);
-                            }
-                          });
-                        }
+                        loginButton();
                       },
                     ),
                     SizedBox(height: Utils.getDeviceWidth(context) / 10),
@@ -128,10 +124,33 @@ class _LoginScreenState extends State<LoginScreen> {
               horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
               controller: passWordTextFiled,
+              obscureText: true,
               decoration: CommonView.textFiledDecoration(StringRes.password),
               validator: validatePassword),
         ),
       ],
+    );
+  }
+
+  void loginButton() {
+    if (_formKey.currentState.validate()) {
+      model.loginApi();
+    }
+  }
+
+  forgotPassword() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        onTap: () {
+          forgotPasswordScreenNavigator(context);
+          //          addPasswordScreenNavigator(context);
+
+        },
+        child: Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: AllText("Forgot Password", align: TextAlign.right)),
+      ),
     );
   }
 }

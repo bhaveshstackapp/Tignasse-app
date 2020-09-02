@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'export.dart';
-import 'services/rest_api/rest_api.dart';
-
 
 void main() => setupLocator();
 
@@ -22,12 +19,9 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     //bgImage api
-    RestApi().callgetImage().then((value) {
-      if(value.statusCode==200) {
-        Utils.showToast(value.body);
-      }
-    });
+
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +35,7 @@ class _MyAppState extends State<MyApp> {
             //  <-- this auto selects the right color
           )*/
       ),
-      home: SplashScreen(),
+      home: SplashScreen(screenName: PrefKeys.splashScreenKey),
     );
   }
 }

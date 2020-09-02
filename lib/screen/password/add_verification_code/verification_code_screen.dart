@@ -1,18 +1,25 @@
 import 'package:tignasseapp/export.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
+
+  final int code;
+  const VerificationCodeScreen({Key key, this.code}) : super(key: key);
+
   @override
-  _VerificationCodeScreenState createState() => _VerificationCodeScreenState();
+  VerificationCodeScreenState createState() => VerificationCodeScreenState();
 }
 
-class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
+class VerificationCodeScreenState extends State<VerificationCodeScreen> {
 
-  TextEditingController passWordTextFiled = TextEditingController();
+  TextEditingController passWordVerificationTextFiled = TextEditingController();
 
   bool isSignOutShow = true;
+  VerifyPasswordViewModel model;
 
   @override
   Widget build(BuildContext context) {
+    model ?? (model = VerifyPasswordViewModel(this));
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -50,7 +57,16 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     text: StringRes.validate,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
-                      welComeScreenNavigator(context);
+                      if(widget.code.toString() == passWordVerificationTextFiled.text) {
+//                        welComeScreenNavigator(context);
+
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                            WelComeScreen()), (Route<dynamic> route) => false);
+
+//                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelComeScreen()));
+                      } else {
+                        Utils.showToast("verification code incorrect");
+                      }
                     },
                   ),
 
@@ -152,7 +168,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
-              controller: passWordTextFiled,
+              controller: passWordVerificationTextFiled,
               decoration: CommonView.textFiledDecoration(StringRes.password),
               validator: validatePassword
           ),

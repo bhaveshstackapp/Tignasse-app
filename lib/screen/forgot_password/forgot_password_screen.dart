@@ -1,20 +1,20 @@
 import 'package:tignasseapp/export.dart';
 
-class AddPasswordScreen extends StatefulWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   @override
-  AddPasswordScreenState createState() => AddPasswordScreenState();
+  ForgotPasswordScreenState createState() => ForgotPasswordScreenState();
 }
 
-class AddPasswordScreenState extends State<AddPasswordScreen> {
+class ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   TextEditingController passWordTextFiled = TextEditingController();
 
   bool isSignOutShow = true;
-//  ForgotPasswordViewModel model;
+  ForgotPasswordViewModel model;
 
   @override
   Widget build(BuildContext context) {
-//    model ?? (model = ForgotPasswordViewModel(this));
+    model ?? (model = ForgotPasswordViewModel(this));
 
     return SafeArea(
       child: Scaffold(
@@ -35,13 +35,13 @@ class AddPasswordScreenState extends State<AddPasswordScreen> {
                       color: ColorRes.white),
                   CommonView.sizeBoxHeight(context, 20),
 
-                  AllText(StringRes.appParam,
+                  AllText(StringRes.forgotPassword,
                       fontSize: Utils.getDeviceWidth(context) / 20,
                       color: ColorRes.white),
 
-                  AllText(StringRes.giveMyPassword,
-                      fontSize: Utils.getDeviceWidth(context) / 22,
-                      color: ColorRes.white),
+//                  AllText(StringRes.giveMyPassword,
+//                      fontSize: Utils.getDeviceWidth(context) / 22,
+//                      color: ColorRes.white),
 
                   CommonView.sizeBoxHeight(context, 20),
 
@@ -55,7 +55,7 @@ class AddPasswordScreenState extends State<AddPasswordScreen> {
                     onPressed: () {
 //                      verificationCodeScreenNavigator(context);
                       if(passWordTextFiled.text.length != 0) {
-//                        model.forgotPasswordApi();
+                        model.forgotPasswordApi();
                       }
 //                      booksListScreenNavigator(context);
                     },
