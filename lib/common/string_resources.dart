@@ -22,6 +22,7 @@ class StringRes {
   static const email                           =  "E-mail";
   static const cndPassword                     =  "Password*";
   static const password                        =  "Password";
+  static const code                            =  "Code";
   static const validate                        =  "VALIDATE";
   static const iRegisterOnline                 =  "or I register online";
   static const onWebSite                       =  "on www.tignasse.fr or";
@@ -64,6 +65,8 @@ class StringRes {
   static const subscriptions                   =  "SUBSCRIPTIONS";
   static const signOut                         =  "SIGN OUT";
   static const conFirmer                       =  "CONFIRMER";
+  static const reSend                          =  "Re-Send";
+  static const reNew                           =  "Re-New";
 
   //Books List
   static const bookNotAvailable                =  "This Tignasse book is not available";

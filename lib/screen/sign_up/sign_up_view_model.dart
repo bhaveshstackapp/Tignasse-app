@@ -31,7 +31,9 @@ class SignUpViewModel {
 
     showLoader(state.context,label: "");
 
-    RestApi().callPostSignUp(dataMap).then((response) {
+
+
+     RestApi().callPostSignUp(dataMap).then((response) {
       if (response != null) {
         var data = json.decode(response.body);
         RegisterResponse registerResponse = RegisterResponse.fromJson(data);
@@ -41,9 +43,11 @@ class SignUpViewModel {
           Future.delayed(const Duration(milliseconds: 500), () {
 //            welComeScreenNavigator(state.context);
 
-          Navigator.of(state.context).pushAndRemoveUntil(
+            verificationCodeScreenNavigator(state.context, registerResponse.userId);
+
+          /*Navigator.of(state.context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => WelComeScreen()),
-              (Route<dynamic> route) => false);
+              (Route<dynamic> route) => false);*/
 
           });
         } else {

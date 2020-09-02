@@ -2,8 +2,8 @@ import 'package:tignasseapp/export.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
 
-  final int code;
-  const VerificationCodeScreen({Key key, this.code}) : super(key: key);
+  final int userId;
+  const VerificationCodeScreen({Key key, this.userId}) : super(key: key);
 
   @override
   VerificationCodeScreenState createState() => VerificationCodeScreenState();
@@ -53,20 +53,49 @@ class VerificationCodeScreenState extends State<VerificationCodeScreen> {
 
                   CommonView.sizeBoxHeight(context, 20),
 
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child: InkWell(
+                            onTap: () {
+                              model.reSendCodeApi();
+                            },
+                            child: AllText(StringRes.reSend, color: Colors.white, fontSize: 20))),
+                  ),
+                  CommonView.sizeBoxHeight(context, 35),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child: InkWell(
+                            onTap: () {
+                              model.reNewCodeApi();
+                            },
+                            child: AllText(StringRes.reNew, color: Colors.white, fontSize: 20))),
+                  ),
+
+                  CommonView.sizeBoxHeight(context, 20),
+
+
+
                   FilledButton(
                     text: StringRes.validate,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
-                      if(widget.code.toString() == passWordVerificationTextFiled.text) {
+
+                      model.verifyCodeApi();
+
+                   /*   if(widget.code.toString() == passWordVerificationTextFiled.text) {
 //                        welComeScreenNavigator(context);
 
-                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                            WelComeScreen()), (Route<dynamic> route) => false);
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginScreen()), (Route<dynamic> route) => false);
 
 //                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelComeScreen()));
                       } else {
                         Utils.showToast("verification code incorrect");
-                      }
+                      }*/
                     },
                   ),
 
@@ -84,6 +113,7 @@ class VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     text: StringRes.subscriptions,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
+
                     },
                   ),
 
@@ -95,9 +125,12 @@ class VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     text: StringRes.signOut,
                     fontSize: Utils.getDeviceWidth(context) / 23,
                     onPressed: () {
-                      setState(() {
+
+                      /* setState(() {
                         isSignOutShow = false;
-                      });
+                      });*/
+                      model.disconnectUserApi();
+
                     },
                   ) :
 
@@ -169,8 +202,12 @@ class VerificationCodeScreenState extends State<VerificationCodeScreen> {
           padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
               controller: passWordVerificationTextFiled,
-              decoration: CommonView.textFiledDecoration(StringRes.password),
-              validator: validatePassword
+              keyboardType: TextInputType.phone,
+              decoration: CommonView.textFiledDecoration(StringRes.code),
+              validator: validatePassword,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(12),
+              ]
           ),
         ),
 

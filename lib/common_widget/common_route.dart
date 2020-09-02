@@ -34,9 +34,9 @@ addPasswordScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
   Navigator.push(context, MaterialPageRoute(builder: (context) => AddPasswordScreen()));
 }
-verificationCodeScreenNavigator(BuildContext context) {
+verificationCodeScreenNavigator(BuildContext context, int userId) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
-  Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodeScreen()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodeScreen(userId: userId)));
 }
 booksListScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));

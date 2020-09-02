@@ -22,8 +22,8 @@ class LoginViewModel {
         LoginResponse loginResponse = LoginResponse.fromJson(data);
 //        Utils.showToast(loginResponse.message);
         if (loginResponse.status == 1) {
-          Navigator.of(state.context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-              WelComeScreen()), (Route<dynamic> route) => false);
+//          verificationCodeScreenNavigator(state.context);
+          Navigator.of(state.context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => WelComeScreen()), (Route<dynamic> route) => false);
         }
 
 //        welComeScreenNavigator(state.context);

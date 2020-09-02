@@ -11,6 +11,8 @@ class RestApi {
   static const signUpUrl = 'UserRegister';
   static const forGotPwdEmlOtp = 'ForgotpwdEmlOtp';
   static const imgUrl = 'MobBgImages';
+  static const verifyCode = 'MappAccessCode';
+  static const reNew = "renew";
   var uname = "appapi@kartpay.com";
   var pwd = "748U576698230O10m47Dm39040FA6l4G";
 
@@ -54,6 +56,7 @@ class RestApi {
       }
     } catch (e) {
       print(e);
+      hideLoader();
       Utils.showToast(e.toString());
       return null;
     }
@@ -111,5 +114,110 @@ class RestApi {
       return null;
     }
   }
+
+
+  //Register after Verify api
+  Future<Response> callPostVerifyAfterRegister(Map<String, dynamic> jsonMap) async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    print("verify: - ${baseUrl + jsonMap.toString()}" + auth);
+    Response response;
+    String url = (baseUrl + verifyCode);
+    try {
+      response =
+      await http.post(url, body: jsonMap, headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.body);
+        hideLoader();
+        return response;
+      } else {
+        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      hideLoader();
+      Utils.showToast(e.toString());
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }
+
+  //Register Re Send Code Api  ,  Re New Code Api,  Disconnect User Code Api
+  Future<Response> callPostReSendReNewDesConnect(Map<String, dynamic> jsonMap) async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    print("re send code : - ${baseUrl + jsonMap.toString()}" + auth);
+    Response response;
+    String url = (baseUrl + verifyCode);
+    try {
+      response = await http.post(url, body: jsonMap, headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.body);
+        hideLoader();
+        return response;
+      } else {
+        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      hideLoader();
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }
+
+  //Register Re New Code Api
+ /* Future<Response> callPostReNewCode(Map<String, dynamic> jsonMap) async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    print("re send code : - ${baseUrl + jsonMap.toString()}" + auth);
+    Response response;
+    String url = (baseUrl + verifyCode);
+//    String url = (baseUrl + reNew);
+    try {
+      response =
+      await http.post(url, body:  jsonMap,headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.body);
+        hideLoader();
+        return response;
+      } else {
+        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      hideLoader();
+      Utils.showToast(e.toString());
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }
+
+  //Disconnect User Code Api
+  Future<Response> callPostDisConnectUser(Map<String, dynamic> jsonMap) async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    print("re send code : - ${baseUrl + jsonMap.toString()}" + auth);
+    Response response;
+    String url = (baseUrl + verifyCode);
+//    String url = (baseUrl + reNew);
+    try {
+      response =
+      await http.post(url, body:  jsonMap,headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.body);
+        hideLoader();
+        return response;
+      } else {
+        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      hideLoader();
+      Utils.showToast(e.toString());
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }*/
 
 }
