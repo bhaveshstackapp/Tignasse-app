@@ -20,9 +20,9 @@ export 'package:tignasseapp/screen/menu/menu_screen.dart';
 export 'package:tignasseapp/screen/password/add_my_password/add_password_screen.dart';
 export  'package:tignasseapp/screen/password/add_verification_code/verification_code_screen.dart';
 export 'package:tignasseapp/common_widget/validation.dart';
-export 'package:tignasseapp/screen/book/books_list/books_list.dart';
+export 'package:tignasseapp/screen/book/books_list/book_list_screen.dart';
 export 'package:cached_network_image/cached_network_image.dart';
-export 'package:tignasseapp/screen/book/open_book/open_book.dart';
+export 'package:tignasseapp/screen/book/open_book/open_book_screen.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:tignasseapp/screen/book/open_book_layer/open_fullscreen_book.dart';
 export 'package:tignasseapp/services/rest_api/rest_api.dart';
@@ -42,6 +42,7 @@ export 'package:tignasseapp/screen/password/add_verification_code/verification_c
 export 'package:tignasseapp/screen/forgot_password/forgot_password_screen.dart';
 export 'package:tignasseapp/screen/forgot_password/forgot_password_view_model.dart';
 export 'package:tignasseapp/screen/forgot_password/verification_view_model.dart';
+export 'package:tignasseapp/screen/book/books_list/book_list_view_model.dart';
 
 
 
@@ -51,6 +52,8 @@ export 'package:tignasseapp/model/register_model.dart';
 export 'package:tignasseapp/model/login_model.dart';
 export 'package:tignasseapp/model/forgot_password_model.dart';
 export 'package:tignasseapp/model/verify_model.dart';
+export 'package:tignasseapp/model/book_list_model.dart';
+//export 'package:tignasseapp/model/book_details_model.dart';
 
 
 

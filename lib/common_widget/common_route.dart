@@ -40,11 +40,11 @@ verificationCodeScreenNavigator(BuildContext context, int userId) {
 }
 booksListScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
-  Navigator.push(context, MaterialPageRoute(builder: (context) => BooksListScreen()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => BookListScreen()));
 }
-openBookScreenNavigator(BuildContext context) {
+openBookScreenNavigator(BuildContext context, String productId) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));
-  Navigator.push(context, MaterialPageRoute(builder: (context) => OpenBookScreen()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => OpenBookScreen(productId: productId)));
 }
 openBookFullScreenNavigator(BuildContext context) {
 //  Navigator.push(context, NavigatePageRoute(context, SoundBiteTrimPage(path, t,from: from, listImages:imageList)));

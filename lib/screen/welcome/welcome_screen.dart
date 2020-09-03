@@ -12,7 +12,11 @@ class _WelComeScreenState extends State<WelComeScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          CommonBackGroundImage.image1(context),
+
+//          SplashScreen(screenName: PrefKeys.registerBgKey),
+
+//          CommonBackGroundImage.image1(context),
+          CommonBackGroundImage.networkImage(context, appState.bgList[4].image),
           CommonView.transparent(context, 0.5),
 
           SingleChildScrollView(

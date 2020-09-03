@@ -1,15 +1,24 @@
 import 'package:tignasseapp/export.dart';
+import 'package:tignasseapp/screen/book/open_book/open_book_view_model.dart';
 
 class OpenBookScreen extends StatefulWidget {
+  final String productId;
+
+  const OpenBookScreen({Key key, this.productId}) : super(key: key);
+
   @override
-  _OpenBookScreenState createState() => _OpenBookScreenState();
+  OpenBookScreenState createState() => OpenBookScreenState();
 }
 
-class _OpenBookScreenState extends State<OpenBookScreen> {
+class OpenBookScreenState extends State<OpenBookScreen> {
   bool isMessageShow = false;
+
+  BookDetailsViewModel model;
 
   @override
   Widget build(BuildContext context) {
+    model ?? (model = BookDetailsViewModel(this));
+
     return SafeArea(
         child: Scaffold(
       body: Stack(
@@ -29,11 +38,9 @@ class _OpenBookScreenState extends State<OpenBookScreen> {
   iconsShow(IconData icon, int i) {
     return InkResponse(
       onTap: () {
-
-        if(i == 2) {
+        if (i == 2) {
           navigatorPop(context);
         }
-
       },
       child: Container(
         height: Utils.getDeviceWidth(context) / 15,
@@ -51,35 +58,40 @@ class _OpenBookScreenState extends State<OpenBookScreen> {
   }
 
   openBook() {
-    return SingleChildScrollView(
-      child: GridView.builder(
-        itemCount: 20,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.only(top: 15, left: 25, right: 25, bottom: 5),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: Utils.getDeviceWidth(context) /
-                (Utils.getDeviceHeight(context) / 1.28)),
+    return model.imageList.length == 0
+        ? Center(
+            child: CircularProgressIndicator(
+            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+          ))
+        : SingleChildScrollView(
+            child: GridView.builder(
+              itemCount: model.imageList.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(top: 15, left: 25, right: 25, bottom: 5),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: Utils.getDeviceWidth(context) /
+                      (Utils.getDeviceHeight(context) / 1.28)),
 
 //              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
 //                  crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3),
-        itemBuilder: (BuildContext context, int index) {
-          /* UserAlbumPictureList userAlbumList;
+              itemBuilder: (BuildContext context, int index) {
+                /* UserAlbumPictureList userAlbumList;
 
                 if (model.albumList != null && model.albumList.length != 0) {
                   userAlbumList = model.albumList[index];
                 }*/
 
-          return bookListData(index);
-        },
-      ),
-    );
+                return bookListData(index, model.imageList);
+              },
+            ),
+          );
   }
 
-  Widget bookListData(int index) {
+  Widget bookListData(int index, List<String> imageList) {
     return Container(
       height: 200,
       width: 200,
@@ -92,13 +104,16 @@ class _OpenBookScreenState extends State<OpenBookScreen> {
             setState(() {
               isMessageShow = true;
             });
-          } else if(index == 0) {
+          } else if (index == 0) {
             openBookFullScreenNavigator(context);
-
           }
         },
         child: Image(
-            image: AssetImage(Utils.getAssetsImg('books_img')),
+            height: Utils.getDeviceHeight(context) / 7,
+//            width: Utils.getDeviceWidth(context) / 6,
+            image: model.imageList.length != 0
+                ? NetworkImage(imageList[index])
+                : AssetImage(Utils.getAssetsImg('books_img')),
             fit: BoxFit.fill),
       ),
     );

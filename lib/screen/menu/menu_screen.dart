@@ -25,7 +25,8 @@ class _MenuScreenState extends State<MenuScreen> {
         child: Scaffold(
       body: Stack(
         children: <Widget>[
-          CommonBackGroundImage.image1(context),
+//          CommonBackGroundImage.image1(context),
+          CommonBackGroundImage.networkImage(context, appState.bgList[5].image),
           CommonView.transparent(context, 0.5),
           Column(
             children: <Widget>[
@@ -170,7 +171,7 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   titleTextShow(String title, String subTitle, int i) {
-    return  Expanded(
+    return Expanded(
         flex: 1,
         child: InkResponse(
           onTap: () {

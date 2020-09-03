@@ -14,6 +14,14 @@ class SignUpScreenState extends State<SignUpScreen> {
   TextEditingController companyTextFiled = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  FocusNode firstNameNode = new FocusNode();
+  FocusNode lastNameNode = new FocusNode();
+  FocusNode companyNameNode = new FocusNode();
+  FocusNode emailNode = new FocusNode();
+  FocusNode passwordNode = new FocusNode();
+  FocusNode conPassWordNode = new FocusNode();
+
+
   SignUpViewModel model;
 
   @override
@@ -99,8 +107,14 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
               controller: firstNameTextFiled,
               validator: validateName,
-              decoration: CommonView.textFiledDecoration(StringRes.firstName),
-              ),
+            autofocus: true,
+            focusNode: firstNameNode,
+            textInputAction: TextInputAction.next,
+            decoration: CommonView.textFiledDecoration(StringRes.firstName),
+            onFieldSubmitted: (v){
+              FocusScope.of(context).requestFocus(lastNameNode);
+            },
+          ),
         ),
       ],
     );
@@ -125,7 +139,13 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: lastNameTextFiled,
             validator: validateLast,
+            autofocus: true,
+            focusNode: lastNameNode,
+            textInputAction: TextInputAction.next,
             decoration: CommonView.textFiledDecoration(StringRes.lastName),
+            onFieldSubmitted: (v){
+              FocusScope.of(context).requestFocus(companyNameNode);
+            },
           ),
         ),
       ],
@@ -151,7 +171,13 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: companyTextFiled,
             validator: validateCompany,
+            autofocus: true,
+            focusNode: companyNameNode,
+            textInputAction: TextInputAction.next,
             decoration: CommonView.textFiledDecoration(StringRes.company),
+            onFieldSubmitted: (v){
+              FocusScope.of(context).requestFocus(emailNode);
+            },
           ),
         ),
       ],
@@ -177,6 +203,12 @@ class SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: emailTextFiled,
             validator: validateEmail,
+            autofocus: true,
+            focusNode: emailNode,
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (v){
+              FocusScope.of(context).requestFocus(passwordNode);
+            },
             decoration: CommonView.textFiledDecoration(StringRes.cndEmail),
           ),
         ),
@@ -204,7 +236,13 @@ class SignUpScreenState extends State<SignUpScreen> {
             controller: passWordTextFiled,
             validator: validatePassword,
             obscureText: true,
+            autofocus: true,
+            focusNode: passwordNode,
+            textInputAction: TextInputAction.next,
             decoration: CommonView.textFiledDecoration(StringRes.cndPassword),
+            onFieldSubmitted: (v){
+              FocusScope.of(context).requestFocus(conPassWordNode);
+            },
           ),
         ),
       ],
@@ -231,7 +269,12 @@ class SignUpScreenState extends State<SignUpScreen> {
             controller: passWordConfirmTextFiled,
             validator: validateConPassword,
             obscureText: true,
+            focusNode: conPassWordNode,
+            textInputAction: TextInputAction.done,
             decoration: CommonView.textFiledDecoration(StringRes.conformPassWord),
+            onFieldSubmitted: (v){
+              FocusScope.of(context).unfocus();
+            },
           ),
         ),
       ],

@@ -11,6 +11,8 @@ class ForgotPasswordViewModel {
     LoginRequest loginRequest = LoginRequest();
     loginRequest.email = state.passWordTextFiled.text;
 
+    showLoader(state.context,label: "");
+
     //login api
     RestApi().callGetForGotPassword(state.passWordTextFiled.text).then((response) {
       if (response.statusCode == 200) {

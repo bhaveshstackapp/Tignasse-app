@@ -95,14 +95,13 @@ class ForgotVerificationScreenState extends State<ForgotVerificationScreen> {
                 color: ColorRes.white,
                 border: new Border.all(color: Colors.black, width: 1.0),
                 borderRadius: BorderRadius.all(Radius.circular(8))),
-            margin:
-            EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25)),
+            margin: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25)),
 //          child:
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Utils.getDeviceWidth(context) / 25),
           child: TextFormField(
               controller: verificationTextFiled,
-              decoration: CommonView.textFiledDecoration(StringRes.email),
+              decoration: CommonView.textFiledDecoration(StringRes.verificationCode),
               validator: validatePassword
           ),
         ),

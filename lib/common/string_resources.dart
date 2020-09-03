@@ -27,6 +27,7 @@ class StringRes {
   static const iRegisterOnline                 =  "or I register online";
   static const onWebSite                       =  "on www.tignasse.fr or";
   static const createAccount                   =  "Create Account";
+  static const verificationCode                =  "Verification Code";
 
   //Register Screen
   static const firstName                       =  "Firstname*";

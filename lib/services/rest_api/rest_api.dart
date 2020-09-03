@@ -12,7 +12,8 @@ class RestApi {
   static const forGotPwdEmlOtp = 'ForgotpwdEmlOtp';
   static const imgUrl = 'MobBgImages';
   static const verifyCode = 'MappAccessCode';
-  static const reNew = "renew";
+  static const bookCategory = 'BooksCategory';
+//  static const reNew = "renew";
   var uname = "appapi@kartpay.com";
   var pwd = "748U576698230O10m47Dm39040FA6l4G";
 
@@ -101,15 +102,15 @@ class RestApi {
       await http.get(url, headers: {'Authorization': auth});
       if (response.statusCode == 200 || response.statusCode == 201) {
         print(response.body);
-      }
-      if (response != null) {
-        print(response.body);
+        hideLoader();
         return response;
       } else {
+        hideLoader();
         return null;
       }
     } catch (e) {
       print(e);
+      hideLoader();
       Utils.showToast(e.toString());
       return null;
     }
@@ -165,6 +166,54 @@ class RestApi {
       return null;
     }
   }
+
+  //Book List Api
+  Future<Response> callGetBookList() async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    Response response;
+    String url = (baseUrl + bookCategory);
+    print("Book List : - $url " + auth);
+    try {
+      response = await http.get(url, headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+//        print(response.body);
+//        hideLoader();
+        return response;
+      } else {
+//        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+//      hideLoader();
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }
+
+  Future<Response> callGetBookDetails(String bookId) async {
+    final String auth = 'Basic ' + base64Encode(utf8.encode('$uname:$pwd'));
+    Response response;
+    String url = (baseUrl + bookCategory + "/$bookId");
+    print("Book List : - $url " + auth);
+    try {
+      response = await http.get(url, headers: {'Authorization': auth});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+//        print(response.body);
+//        hideLoader();
+        return response;
+      } else {
+//        hideLoader();
+        return null;
+      }
+    } catch (e) {
+      print(e);
+//      hideLoader();
+      Utils.showToast(e.toString());
+      return null;
+    }
+  }
+
 
   //Register Re New Code Api
  /* Future<Response> callPostReNewCode(Map<String, dynamic> jsonMap) async {

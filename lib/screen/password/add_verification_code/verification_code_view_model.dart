@@ -30,9 +30,7 @@ class VerifyPasswordViewModel {
     String firstFour = setFiledName.substring(0,4);
     String secondFour = setFiledName.substring(4,8);
     String thirdFour = setFiledName.substring(8,12);
-
     String subString =  firstFour + "-" + secondFour + "-" + thirdFour;
-
 
     var mapData = {
       "action":"verify",
@@ -47,8 +45,9 @@ class VerifyPasswordViewModel {
         VerifyResponse loginResponse = VerifyResponse.fromJson(json.decode(response.body));
         if(loginResponse.status == 1) {
           Utils.showToast(loginResponse.message);
+          Navigator.of(state.context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => WelComeScreen()), (Route<dynamic> route) => false);
         } else {
-          Utils.showToast("Unknow Code");
+          Utils.showToast("Input Valid Code");
         }
       }
     });
