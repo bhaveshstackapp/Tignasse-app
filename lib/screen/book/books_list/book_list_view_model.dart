@@ -1,3 +1,4 @@
+import 'package:tignasseapp/common/sqlf_lite_db.dart';
 import 'package:tignasseapp/export.dart';
 
 class BookListViewModel {
@@ -10,7 +11,7 @@ class BookListViewModel {
     bookListApi();
   }
 
-  bookListApi() {
+  bookListApi() async {
 //    LoginRequest loginRequest = LoginRequest();
 //    loginRequest.email = state.emailTextFiled.text;
 //    loginRequest.password = state.passWordTextFiled.text;
@@ -18,17 +19,36 @@ class BookListViewModel {
     //login api
 //    showLoader(state.context,label: "");
 
-    RestApi().callGetBookList().then((response) {
+    bool isConnect = await isConnectNetworkWithMessage(state.context);
 
-      if (response.statusCode == 200) {
+    if(!isConnect) {
+      var data = await DataBaseSqlFLite.instance.bookShow();
+      var imageList0 = data[0]['bookList'];
+      BookCategoryResponseModel modelData = BookCategoryResponseModel.fromJson(json.decode(imageList0));
+      bookListCategory = modelData.category;
+      bookList = modelData.products;
+    } else  {
+      RestApi().callGetBookList().then((response) async {
+        if (response.statusCode == 200) {
 //        var data = json.decode(response.body);
-        BookCategoryResponseModel modelData = BookCategoryResponseModel.fromJson(json.decode(response.body));
+//        await DataBaseSqlFLite.instance.insertBgImage({"imageList": response.body});
+          await DataBaseSqlFLite.instance.insertBook({"bookList": response.body});
+          var data = await DataBaseSqlFLite.instance.bookShow();
+          var imageList0 = data[0]['bookList'];
+          BookCategoryResponseModel modelData = BookCategoryResponseModel.fromJson(json.decode(imageList0));
+          bookListCategory = modelData.category;
+          bookList = modelData.products;
+          /* BookCategoryResponseModel modelData = BookCategoryResponseModel.fromJson(json.decode(response.body));
         bookListCategory = modelData.category;
-        bookList = modelData.products;
-        state.setState(() {
-        });
-      }
-    });
+        bookList = modelData.products;*/
+          state.setState(() {
+          });
+        }
+      });
+    }
+
+
+
   }
 
 }

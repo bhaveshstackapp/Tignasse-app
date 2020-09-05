@@ -110,11 +110,17 @@ class BookListScreenState extends State<BookListScreen> {
             Stack(
               children: [
                 productData.mainImage != null
-                    ? Image(
+                    ? CachedNetworkImage(
+                        height: Utils.getDeviceHeight(context) / 5,
+                        width: Utils.getDeviceWidth(context) / 3.3,
+                        imageUrl: productData.mainImage,
+                        fit: BoxFit.fill)
+
+                    /* Image(
                         height: Utils.getDeviceHeight(context) / 5,
                         width: Utils.getDeviceWidth(context) / 3.3,
                         image: NetworkImage(productData.mainImage),
-                        fit: BoxFit.fill)
+                        fit: BoxFit.fill)*/
                     : Image(
                         image: AssetImage(Utils.getAssetsImg('books_img')),
                         fit: BoxFit.fill)

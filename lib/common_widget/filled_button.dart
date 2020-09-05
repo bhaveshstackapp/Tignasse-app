@@ -32,7 +32,7 @@ class FilledButton extends StatelessWidget {
     return Container(
         height: height ?? Utils.getDeviceWidth(context) / 12,
 //        width: width ?? double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 3, vertical: 0),
+        padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorRes.white),
           borderRadius: BorderRadius.all(Radius.circular(8))

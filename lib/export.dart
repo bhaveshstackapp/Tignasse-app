@@ -30,6 +30,7 @@ export 'package:tignasseapp/common/prefkeys.dart';
 export 'package:tignasseapp/screen/forgot_password/verification_screen.dart';
 export 'package:tignasseapp/common/loader_page.dart';
 export 'package:flutter/services.dart';
+export 'package:tignasseapp/common/sqlf_lite_db.dart';
 
 //export 'package:flutter/services.dart';
 

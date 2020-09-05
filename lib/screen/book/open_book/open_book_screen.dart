@@ -108,13 +108,17 @@ class OpenBookScreenState extends State<OpenBookScreen> {
             openBookFullScreenNavigator(context);
           }
         },
-        child: Image(
-            height: Utils.getDeviceHeight(context) / 7,
+        child: model.imageList.length != 0
+            ? CachedNetworkImage(
+                height: Utils.getDeviceHeight(context) / 5,
+                width: Utils.getDeviceWidth(context) / 3.3,
+                imageUrl: imageList[index],
+                fit: BoxFit.fill) /*NetworkImage(imageList[index])*/
+            : Image(
+                height: Utils.getDeviceHeight(context) / 7,
 //            width: Utils.getDeviceWidth(context) / 6,
-            image: model.imageList.length != 0
-                ? NetworkImage(imageList[index])
-                : AssetImage(Utils.getAssetsImg('books_img')),
-            fit: BoxFit.fill),
+                image: AssetImage(Utils.getAssetsImg('books_img')),
+                fit: BoxFit.fill),
       ),
     );
   }

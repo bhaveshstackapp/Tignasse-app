@@ -1,4 +1,5 @@
 import 'package:tignasseapp/export.dart';
+import 'package:connectivity/connectivity.dart';
 
 class Utils{
 
@@ -71,6 +72,72 @@ showLoader(context,{String label}){
 hideLoader(){
   Navigator.pop(c);
 }
+
+Connectivity connectivity = Connectivity();
+bool isConnect = false;
+
+Future<bool> isConnectNetworkWithMessage(BuildContext context) async {
+  var connectivityResult = await connectivity.checkConnectivity();
+  bool isConnect = getConnectionValue(connectivityResult);
+  if (!isConnect) {
+    commonMessage(
+      context,
+      "Network connection required to fetch data.",
+    );
+  }
+  return isConnect;
+}
+
+bool getConnectionValue(var connectivityResult) {
+  bool status = false;
+  switch (connectivityResult) {
+    case ConnectivityResult.mobile:
+      status = true;
+      break;
+    case ConnectivityResult.wifi:
+      status = true;
+      break;
+    case ConnectivityResult.none:
+      status = false;
+      break;
+    default:
+      status = false;
+      break;
+  }
+  return status;
+}
+
+void commonMessage(BuildContext c, String message,
+    {Function(String) callback, email}) {
+  showDialog(
+    context: c,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text(
+          "Message",
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        content: Text(message, style: TextStyle(fontWeight: FontWeight.w500)),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          FlatButton(
+            child: new Text(
+              "Retry",
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+            onPressed: () async {
+              Navigator.of(context).pop();
+              isConnect = await isConnectNetworkWithMessage(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 
 
 /*Future<bool> isConnectNetwork(BuildContext context) async {

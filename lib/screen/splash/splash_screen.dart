@@ -25,7 +25,13 @@ class SplashScreenState extends State<SplashScreen> {
 //            CommonBackGroundImage.image1(context),
 //             Future.delayed(const Duration(seconds: 1), () =>
 
-          appState.bgList.length != 0 ? CommonBackGroundImage.networkImage(context, imageData()) : CommonBackGroundImage.image1(context),
+//            Image.memory(bytes)
+
+//          Image(image: FileImage(model.image1)),
+
+
+             appState.bgList.length != 0 ? CommonBackGroundImage.networkImage(context, imageData()) : CommonBackGroundImage.image1(context),
+//          appState.bgList.length != 0 ? NetworkImage(imageData()) : CommonBackGroundImage.image1(context),
 
             CommonView.transparent(context, 0.5),
             Padding(

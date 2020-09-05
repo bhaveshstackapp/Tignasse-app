@@ -8,8 +8,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailTextFiled = TextEditingController();
-  TextEditingController passWordTextFiled = TextEditingController();
+  TextEditingController emailTextFiled = TextEditingController(text: "bhavesh.stackapp@gmail.com");
+  TextEditingController passWordTextFiled = TextEditingController(text: "Test@123");
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

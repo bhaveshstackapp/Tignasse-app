@@ -13,7 +13,7 @@ class BookDetailsViewModel {
     bookDetailsApi();
   }
 
-  bookDetailsApi() {
+  bookDetailsApi() async {
 //    LoginRequest loginRequest = LoginRequest();
 //    loginRequest.email = state.emailTextFiled.text;
 //    loginRequest.password = state.passWordTextFiled.text;
@@ -21,17 +21,31 @@ class BookDetailsViewModel {
     //login api
 //    showLoader(state.context,label: "");
 
-    RestApi().callGetBookDetails(state.widget.productId).then((response) {
-      if (response.statusCode == 200) {
+    bool isConnect = await isConnectNetworkWithMessage(state.context);
+    if(!isConnect) {
+      var data = await DataBaseSqlFLite.instance.bookDetailsShow();
+      var bookDetailsData = data[0]['bookDetailsList'];
+      modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
+      imageList = modelData.images;
+    } else {
+      RestApi().callGetBookDetails(state.widget.productId).then((
+          response) async {
+        if (response.statusCode == 200) {
 //        var data = json.decode(response.body);
-        modelData = BookDetailsModel.fromJson(json.decode(response.body));
-        imageList = modelData.images;
+
+          await DataBaseSqlFLite.instance.insertBookDetails(
+              {"bookDetailsList": response.body});
+          var data = await DataBaseSqlFLite.instance.bookDetailsShow();
+          var bookDetailsData = data[0]['bookDetailsList'];
+          modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
+          imageList = modelData.images;
+
 //        bookListCategory = modelData.category;
 //        bookList = modelData.products;
-        state.setState(() {
-        });
-      }
-    });
+          state.setState(() {});
+        }
+      });
+    }
   }
 
 
