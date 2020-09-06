@@ -7,13 +7,6 @@ class AppState {
   }
   AppState._internal();
 
-
-  int selectIndexColor = 0;
-
-  String fcmToken;
-
   List<BackGroundImageModel> bgList = List();
-
-//  List<UserModel> userDataList = List(); // inbox
 
 }
