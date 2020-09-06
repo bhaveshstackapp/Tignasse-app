@@ -15,6 +15,18 @@ class OpenBookScreenState extends State<OpenBookScreen> {
 
   BookDetailsViewModel model;
 
+
+  @override
+  dispose(){
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     model ?? (model = BookDetailsViewModel(this));
@@ -117,7 +129,7 @@ class OpenBookScreenState extends State<OpenBookScreen> {
               isMessageShow = true;
             });
           } else {
-            openBookFullScreenNavigator(context, imageList[index]);
+            openBookFullScreenNavigator(context, imageList, index);
           }
         },
         child: model.imageList.length != 0

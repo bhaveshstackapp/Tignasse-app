@@ -8,6 +8,18 @@ class BookListScreen extends StatefulWidget {
 class BookListScreenState extends State<BookListScreen> {
   bool isMessageShow = false;
 
+
+  @override
+  dispose(){
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
   BookListViewModel model;
 
   @override

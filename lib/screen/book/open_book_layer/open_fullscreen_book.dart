@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:pinch_zoom_image_last/pinch_zoom_image_last.dart';
 import 'package:tignasseapp/export.dart';
 import 'package:tignasseapp/screen/book/open_book_layer/open_full_book_view_model.dart';
-
 import '../../../common/util.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class OpenFullScreenBook extends StatefulWidget {
+  final List<String> imageUrl;
+  final int index;
 
-  final String imageUrl;
-  const OpenFullScreenBook({Key key, this.imageUrl}) : super(key: key);
+  const OpenFullScreenBook({Key key, this.imageUrl, this.index}) : super(key: key);
 
   @override
   OpenFullScreenBookState createState() => OpenFullScreenBookState();
@@ -29,11 +32,34 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
   bool isSideMenuShow = false;
   bool istrue = false;
 
+  bool isLandScape = false;
+  bool isAutoPlay = false;
+  int currentIndexShow;
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndexShow = widget.index;
+  }
+
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
+  double _scale = 1.0;
+  double _previousScale = 1.0;
+
   OpenFullBookViewModel model;
 
   @override
   Widget build(BuildContext context) {
-
     model ?? (model = OpenFullBookViewModel(this));
 
     istrue = Utils.getOrientation(context) == Orientation.portrait;
@@ -41,8 +67,63 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
       child: Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         body: Stack(
+//          alignment: Alignment.center,
+
           children: [
-            CommonBackGroundImage.networkImageBook(context, widget.imageUrl),
+//            CommonBackGroundImage.networkImageBook(context, widget.imageUrl),
+
+            Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                currentIndexShow = index;
+                return Center(
+                  child: PinchZoomImage(
+                    image: CachedNetworkImage(
+                        imageUrl: widget.imageUrl[index], fit: BoxFit.contain),
+                    zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
+                    hideStatusBarWhileZooming: true,
+                  ),
+
+                 /* child: GestureDetector(
+                    onScaleStart: (ScaleStartDetails details) {
+                      _previousScale = _scale;
+                    },
+                    onScaleUpdate: (ScaleUpdateDetails details) {
+                      setState(() {
+                        _scale = _previousScale * details.scale;
+                      });
+                    },
+                    onScaleEnd: (ScaleEndDetails details) {
+                      _previousScale = 1.0;
+                    },
+                    child: Transform(
+                      transform: Matrix4.diagonal3(Vector3(
+                          _scale.clamp(1.0, 5.0),
+                          _scale.clamp(1.0, 5.0),
+                          _scale.clamp(1.0, 5.0))),
+                      alignment: FractionalOffset.center,
+                      child: CachedNetworkImage(
+                          imageUrl: widget.imageUrl[index],
+                          fit: BoxFit.contain),
+                    ),
+                  ),*/
+                );
+
+                /*child: ZoomableImage(
+                    NetworkImage(
+                        widget.imageUrl[index]),
+//                    zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
+//                    hideStatusBarWhileZooming: true,
+                  ),*/
+
+//                return new Image.network(widget.imageUrl[index], fit: BoxFit.contain);
+              },
+              itemCount: widget.imageUrl.length,
+              index: currentIndexShow,
+//              pagination: new SwiperPagination(),
+//              control: new SwiperControl(),
+              autoplay: isAutoPlay,
+            ),
+
             Container(
               height: 70,
               color: Colors.black.withOpacity(0.6),
@@ -126,7 +207,23 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
           isSideMenuShow = !isSideMenuShow;
           setState(() {});
         } else if (i == 4) {
-        } else {}
+          if (isLandScape) {
+            SystemChrome.setPreferredOrientations([
+              DeviceOrientation.portraitUp,
+              DeviceOrientation.portraitDown,
+            ]);
+          } else {
+            SystemChrome.setPreferredOrientations([
+              DeviceOrientation.landscapeRight,
+              DeviceOrientation.landscapeLeft,
+            ]);
+          }
+          isLandScape = !isLandScape;
+        } else {
+          setState(() {
+            isAutoPlay = !isAutoPlay;
+          });
+        }
       },
       child: Image(
           height: istrue
@@ -135,8 +232,7 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
           width: istrue
               ? Utils.getDeviceWidth(context) / 10
               : Utils.getDeviceHeight(context) / 10,
-          image: AssetImage(Utils.getAssetsIcons(icon))
-      ),
+          image: AssetImage(Utils.getAssetsIcons(icon))),
       /*  child: Container(
         height: Utils.getDeviceWidth(context) / 8,
         width: Utils.getDeviceWidth(context) / 8,
