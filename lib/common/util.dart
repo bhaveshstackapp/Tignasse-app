@@ -21,14 +21,7 @@ class Utils{
   }
 
   static isCheckTable() {
-
     return Device.get().isTablet;
-
-   /* var shortestSide = MediaQuery.of(context).size.shortestSide;
-    final bool useMobileLayout = shortestSide < 600;
-    print(useMobileLayout);
-    return useMobileLayout;*/
-
   }
 
   /* static getNetworkImg(String name) {
@@ -149,64 +142,5 @@ void commonMessage(BuildContext c, String message,
     },
   );
 }
-
-
-
-/*Future<bool> isConnectNetwork(BuildContext context) async {
-  var connectivityResult = await connectivity.checkConnectivity();
-  bool isConnect = getConnectionValue(connectivityResult);
-  return isConnect;
-}*/
-
-// Method to convert the connectivity to a string value
-/*bool getConnectionValue(var connectivityResult) {
-  bool status = false;
-  switch (connectivityResult) {
-    case ConnectivityResult.mobile:
-      status = true;
-      break;
-    case ConnectivityResult.wifi:
-      status = true;
-      break;
-    case ConnectivityResult.none:
-      status = false;
-      break;
-    default:
-      status = false;
-      break;
-  }
-  return status;
-}
-
-Connectivity connectivity = Connectivity();
-
-Future<bool> isConnectNetworkWithMessage(BuildContext context) async {
-  var connectivityResult = await connectivity.checkConnectivity();
-  bool isConnect = getConnectionValue(connectivityResult);
-  if (!isConnect) {
-    commonMessage(
-      context,
-      "Network connection required to fetch data.",
-    );
-  }
-  return isConnect;
-}*/
-
-/*BuildContext c;
-showLoader(context,{String label}){
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      c = context;
-      return LoaderPage(label: label);
-
-    },
-  );
-}
-
-hideLoader(){
-  Navigator.pop(c);
-}*/
 
 

@@ -6,6 +6,8 @@ import 'package:tignasseapp/screen/book/open_book_layer/open_full_book_view_mode
 import '../../../common/util.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
+import '../../../common/util.dart';
+
 class OpenFullScreenBook extends StatefulWidget {
   final List<String> imageUrl;
   final int index;
@@ -53,9 +55,6 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
     super.dispose();
   }
 
-  double _scale = 1.0;
-  double _previousScale = 1.0;
-
   OpenFullBookViewModel model;
 
   @override
@@ -67,61 +66,29 @@ class OpenFullScreenBookState extends State<OpenFullScreenBook> {
       child: Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         body: Stack(
-//          alignment: Alignment.center,
-
           children: [
 //            CommonBackGroundImage.networkImageBook(context, widget.imageUrl),
 
-            Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                currentIndexShow = index;
-                return Center(
-                  child: PinchZoomImage(
-                    image: CachedNetworkImage(
-                        imageUrl: widget.imageUrl[index], fit: BoxFit.contain),
-                    zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
-                    hideStatusBarWhileZooming: true,
-                  ),
-
-                 /* child: GestureDetector(
-                    onScaleStart: (ScaleStartDetails details) {
-                      _previousScale = _scale;
-                    },
-                    onScaleUpdate: (ScaleUpdateDetails details) {
-                      setState(() {
-                        _scale = _previousScale * details.scale;
-                      });
-                    },
-                    onScaleEnd: (ScaleEndDetails details) {
-                      _previousScale = 1.0;
-                    },
-                    child: Transform(
-                      transform: Matrix4.diagonal3(Vector3(
-                          _scale.clamp(1.0, 5.0),
-                          _scale.clamp(1.0, 5.0),
-                          _scale.clamp(1.0, 5.0))),
-                      alignment: FractionalOffset.center,
-                      child: CachedNetworkImage(
-                          imageUrl: widget.imageUrl[index],
-                          fit: BoxFit.contain),
+            Container(
+              height: Utils.getDeviceHeight(context),
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  currentIndexShow = index;
+                  return Center(
+                    child: PinchZoomImage(
+                      image: CachedNetworkImage(
+                          imageUrl: widget.imageUrl[index], fit: BoxFit.contain),
+                      zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
+                      hideStatusBarWhileZooming: true,
                     ),
-                  ),*/
-                );
+                  );
 
-                /*child: ZoomableImage(
-                    NetworkImage(
-                        widget.imageUrl[index]),
-//                    zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
-//                    hideStatusBarWhileZooming: true,
-                  ),*/
-
-//                return new Image.network(widget.imageUrl[index], fit: BoxFit.contain);
-              },
-              itemCount: widget.imageUrl.length,
-              index: currentIndexShow,
-//              pagination: new SwiperPagination(),
-//              control: new SwiperControl(),
-              autoplay: isAutoPlay,
+           //                return new Image.network(widget.imageUrl[index], fit: BoxFit.contain);
+                },
+                itemCount: widget.imageUrl.length,
+                index: currentIndexShow,
+               autoplay: isAutoPlay,
+              ),
             ),
 
             Container(
