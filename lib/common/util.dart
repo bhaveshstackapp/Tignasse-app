@@ -1,3 +1,4 @@
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:tignasseapp/export.dart';
 import 'package:connectivity/connectivity.dart';
 
@@ -17,6 +18,17 @@ class Utils{
 
   static getAssetsIcons(String name) {
     return "assets/icons/" + name + ".png";
+  }
+
+  static isCheckTable() {
+
+    return Device.get().isTablet;
+
+   /* var shortestSide = MediaQuery.of(context).size.shortestSide;
+    final bool useMobileLayout = shortestSide < 600;
+    print(useMobileLayout);
+    return useMobileLayout;*/
+
   }
 
   /* static getNetworkImg(String name) {

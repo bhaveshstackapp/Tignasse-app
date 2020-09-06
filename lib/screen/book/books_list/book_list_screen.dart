@@ -1,3 +1,4 @@
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:tignasseapp/export.dart';
 
 class BookListScreen extends StatefulWidget {
@@ -17,14 +18,20 @@ class BookListScreenState extends State<BookListScreen> {
     return SafeArea(
         child: Scaffold(
       body: Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: [
 //          CommonBackGroundImage.image1(context),
           CommonBackGroundImage.networkImage(context, appState.bgList[6].image),
           CommonView.transparent(context, 0.5),
-          headerView(),
-          listOfBooks(),
-          alertMessageBox()
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              headerView(),
+              listOfBooks(),
+              alertMessageBox()
+            ],
+          ),
+        )
         ],
       ),
     ));
@@ -50,27 +57,34 @@ class BookListScreenState extends State<BookListScreen> {
 
   listOfBooks() {
     return model.bookList.length == 0
-        ? Center(
-            child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+        ? SizedBox(
+          height: Utils.getDeviceWidth(context),
+          child: Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
             ),
-          )
+        )
         : SingleChildScrollView(
             child: GridView.builder(
               itemCount: model.bookList.length != 0 ? model.bookList.length : 0,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.only(
-                  top: Utils.getDeviceWidth(context) / 4.5,
+                  top: 15,
                   left: 25,
                   right: 25,
                   bottom: 5),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
+                  crossAxisCount: Utils.isCheckTable() ? 3 : 2,
+//                  crossAxisCount: Utils.isCheckTable(context) ? 2 : 3,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 5,
-                  childAspectRatio: Utils.getDeviceWidth(context) /
-                      (Utils.getDeviceHeight(context) / 1.08)),
+                  childAspectRatio: Utils.isCheckTable()
+                      ? Utils.getDeviceWidth(context) /
+                          (Utils.getDeviceHeight(context) / 1.25)
+                      : Utils.getDeviceWidth(context) /
+                          (Utils.getDeviceHeight(context) / 1.25)),
 
 //              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
 //                  crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3),
@@ -111,8 +125,8 @@ class BookListScreenState extends State<BookListScreen> {
               children: [
                 productData.mainImage != null
                     ? CachedNetworkImage(
-                        height: Utils.getDeviceHeight(context) / 5,
-                        width: Utils.getDeviceWidth(context) / 3.3,
+                        height: Utils.isCheckTable() ? Utils.getDeviceHeight(context) / 5.5  : Utils.getDeviceHeight(context) / 3.6,
+                        width: Utils.isCheckTable() ? Utils.getDeviceWidth(context) / 3.3 : Utils.getDeviceWidth(context) / 2.5,
                         imageUrl: productData.mainImage,
                         fit: BoxFit.fill)
 
@@ -133,7 +147,7 @@ class BookListScreenState extends State<BookListScreen> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: 20,
-                width: Utils.getDeviceWidth(context) / 3.3,
+                width: Utils.isCheckTable() ? Utils.getDeviceWidth(context) / 3.3 : Utils.getDeviceWidth(context) / 2.5,
 //                        color: Colors.deepOrangeAccent,
                 color: ColorRes.black,
                 padding: EdgeInsets.symmetric(horizontal: 3),
@@ -235,7 +249,7 @@ class BookListScreenState extends State<BookListScreen> {
             fontSize: Utils.getDeviceWidth(context) / 12,
             fontFamily: StringRes.roboto,
             fontWeight: FontWeight.w300),
-        SizedBox(height: 10),
+//        SizedBox(height: 10),
       ],
     );
   }

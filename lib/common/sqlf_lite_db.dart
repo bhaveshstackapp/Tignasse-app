@@ -16,6 +16,7 @@ class DataBaseSqlFLite {
   static final imageList = 'imageList';
   static final bookList = 'bookList';
   static final bookDetailsList = 'bookDetailsList';
+  static final productIdColumn = 'productId';
 
   DataBaseSqlFLite._privateConstructor();
 
@@ -75,7 +76,8 @@ class DataBaseSqlFLite {
               ')');
 
           await db.execute('CREATE TABLE $_tableBookDetailsList('
-              '$bookDetailsList TEXT'
+              '$productIdColumn TEXT,'
+//              '$bookDetailsList TEXT'
               ')');
 
         }
@@ -149,9 +151,12 @@ class DataBaseSqlFLite {
   }
 
   //Book Details List Data
-  insertBookDetails(Map<String, dynamic> jsonMap) async {
+//  insertBookDetails(String productId, String data) async {
+    insertBookDetails(Map<String, dynamic> jsonMap) async {
 //  await deleteAllEmployees();
     final db = await database;
+//    int res = await db.rawInsert(
+//        'INSERT INTO $_tableBookDetailsList($productIdColumn, $bookDetailsList) VALUES($productId, $data)');
     final res = await db.insert(_tableBookDetailsList, jsonMap);
     return res;
   }
