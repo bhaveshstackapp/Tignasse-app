@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tignasseapp/export.dart';
+import 'package:tignasseapp/screen/book/open_book_layer/open_full_book_view_model.dart';
 
 import '../../../common/util.dart';
 
 class OpenFullScreenBook extends StatefulWidget {
+
+  final String imageUrl;
+  const OpenFullScreenBook({Key key, this.imageUrl}) : super(key: key);
+
   @override
-  _OpenFullScreenBookState createState() => _OpenFullScreenBookState();
+  OpenFullScreenBookState createState() => OpenFullScreenBookState();
 }
 
-class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
+class OpenFullScreenBookState extends State<OpenFullScreenBook> {
   List<String> stringRes = [
     "08 Etat de grace",
     "24 into the wild",
@@ -24,14 +29,20 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
   bool isSideMenuShow = false;
   bool istrue = false;
 
+  OpenFullBookViewModel model;
+
   @override
   Widget build(BuildContext context) {
+
+    model ?? (model = OpenFullBookViewModel(this));
+
     istrue = Utils.getOrientation(context) == Orientation.portrait;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black.withOpacity(0.5),
         body: Stack(
           children: [
-            CommonBackGroundImage.image1(context),
+            CommonBackGroundImage.networkImageBook(context, widget.imageUrl),
             Container(
               height: 70,
               color: Colors.black.withOpacity(0.6),
@@ -124,7 +135,8 @@ class _OpenFullScreenBookState extends State<OpenFullScreenBook> {
           width: istrue
               ? Utils.getDeviceWidth(context) / 10
               : Utils.getDeviceHeight(context) / 10,
-          image: AssetImage(Utils.getAssetsIcons(icon))),
+          image: AssetImage(Utils.getAssetsIcons(icon))
+      ),
       /*  child: Container(
         height: Utils.getDeviceWidth(context) / 8,
         width: Utils.getDeviceWidth(context) / 8,

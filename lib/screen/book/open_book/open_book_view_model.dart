@@ -29,30 +29,62 @@ class BookDetailsViewModel {
       modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
       imageList = modelData.images;
     } else {*/
+
+    BookDetailsSqfModel bookDetailsSqfModel = BookDetailsSqfModel();
     var data = await DataBaseSqlFLite.instance.bookDetailsShow();
 
-    if (data.length != 0 && data != null) {
+    bool isIdMatch = false;
+    // data[0]['productId']
+    data.forEach((element) {
+
+      if(element['productId'] == state.widget.productId) {
+        isIdMatch = true;
+        var bookDetailsData = element['bookDetailsList'];
+        modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
+        imageList = modelData.images;
+        state.setState(() {});
+        return null;
+      }
+    });
+
+    /*if (data.length != 0 && data != null ) {
       var bookDetailsData = data[0]['bookDetailsList'];
       modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
       imageList = modelData.images;
       state.setState(() {});
 
-    } else {
+    } else {*/
+    if(isIdMatch == false) {
       RestApi()
           .callGetBookDetails(state.widget.productId)
           .then((response) async {
         if (response.statusCode == 200) {
 //        var data = json.decode(response.body);
-          await DataBaseSqlFLite.instance
-              .insertBookDetails({"bookDetailsList": response.body});
-          var data = await DataBaseSqlFLite.instance.bookDetailsShow();
+          bookDetailsSqfModel.productId = state.widget.productId;
+          bookDetailsSqfModel.bookDetailsList = response.body;
+          await DataBaseSqlFLite.instance.insertBookDetails(bookDetailsSqfModel.toJson());
+
+          var addNewData = await DataBaseSqlFLite.instance.bookDetailsShow();
+
+          addNewData.forEach((element) async {
+            if(element['productId'] == state.widget.productId) {
+              isIdMatch = true;
+              var bookDetailsData = element['bookDetailsList'];
+              modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
+              imageList = modelData.images;
+              // state.setState(() {});
+              return null;
+            }
+            state.setState(() {});
+          });
+          /*var data = await DataBaseSqlFLite.instance.bookDetailsShow();
           var bookDetailsData = data[0]['bookDetailsList'];
           modelData = BookDetailsModel.fromJson(json.decode(bookDetailsData));
-          imageList = modelData.images;
+          imageList = modelData.images;*/
 
 //        bookListCategory = modelData.category;
 //        bookList = modelData.products;
-          state.setState(() {});
+//           state.setState(() {});
         }
       });
     }

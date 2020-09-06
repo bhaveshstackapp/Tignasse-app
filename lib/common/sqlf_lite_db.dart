@@ -4,9 +4,9 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DataBaseSqlFLite {
-  static DataBaseSqlFLite _dataBaseSqlFLite;
-  static final _dbName = "BookAppDatabase.db";
-  static final _dbVersion = 1;
+//  static DataBaseSqlFLite _dataBaseSqlFLite;
+//  static final _dbName = "BookAppDatabase.db";
+//  static final _dbVersion = 1;
 
   static final _tableImage = 'imageTable';
   static final _tableBookList = 'bookListTable';
@@ -77,7 +77,7 @@ class DataBaseSqlFLite {
 
           await db.execute('CREATE TABLE $_tableBookDetailsList('
               '$productIdColumn TEXT,'
-//              '$bookDetailsList TEXT'
+              '$bookDetailsList TEXT'
               ')');
 
         }

@@ -1,4 +1,3 @@
-import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:tignasseapp/export.dart';
 
 class BookListScreen extends StatefulWidget {
@@ -21,7 +20,7 @@ class BookListScreenState extends State<BookListScreen> {
         alignment: Alignment.topCenter,
         children: [
 //          CommonBackGroundImage.image1(context),
-          CommonBackGroundImage.networkImage(context, appState.bgList[6].image),
+          CommonBackGroundImage.networkImageBg(context, appState.bgList[6].image),
           CommonView.transparent(context, 0.5),
         SingleChildScrollView(
           child: Column(

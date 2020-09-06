@@ -112,12 +112,12 @@ class OpenBookScreenState extends State<OpenBookScreen> {
       padding: EdgeInsets.only(top: 0, left: 0),
       child: InkResponse(
         onTap: () {
-          if (index != 0) {
+          if (index == -1) {
             setState(() {
               isMessageShow = true;
             });
-          } else if (index == 0) {
-            openBookFullScreenNavigator(context);
+          } else {
+            openBookFullScreenNavigator(context, imageList[index]);
           }
         },
         child: model.imageList.length != 0

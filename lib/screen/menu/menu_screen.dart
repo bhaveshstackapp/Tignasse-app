@@ -26,7 +26,7 @@ class _MenuScreenState extends State<MenuScreen> {
       body: Stack(
         children: <Widget>[
 //          CommonBackGroundImage.image1(context),
-          CommonBackGroundImage.networkImage(context, appState.bgList[5].image),
+          CommonBackGroundImage.networkImageBg(context, appState.bgList[5].image),
           CommonView.transparent(context, 0.5),
           Column(
             children: <Widget>[

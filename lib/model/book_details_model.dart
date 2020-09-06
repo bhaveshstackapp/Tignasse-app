@@ -1,3 +1,23 @@
+class BookDetailsSqfModel {
+  String productId;
+  String bookDetailsList;
+
+  BookDetailsSqfModel({this.productId, this.bookDetailsList});
+
+  BookDetailsSqfModel.fromJson(Map<String, dynamic> json) {
+    productId = json['productId'];
+    bookDetailsList = json['bookDetailsList'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['productId'] = this.productId;
+    data['bookDetailsList'] = this.bookDetailsList;
+    return data;
+  }
+}
+
+
 class BookDetailsModel {
   int minItemsInBox;
   int maxItemsInBox;
@@ -76,78 +96,78 @@ class BookDetailsModel {
 
   BookDetailsModel(
       {this.minItemsInBox,
-      this.maxItemsInBox,
-      this.boxLength,
-      this.boxWidth,
-      this.boxHeight,
-      this.productId,
-      this.productCode,
-      this.productType,
-      this.status,
-      this.companyId,
-      this.listPrice,
-      this.amount,
-      this.weight,
-      this.length,
-      this.width,
-      this.height,
-      this.shippingFreight,
-      this.lowAvailLimit,
-      this.timestamp,
-      this.updatedTimestamp,
-      this.usergroupIds,
-      this.isEdp,
-      this.edpShipping,
-      this.unlimitedDownload,
-      this.tracking,
-      this.freeShipping,
-      this.zeroPriceAction,
-      this.isPbp,
-      this.isOp,
-      this.isOper,
-      this.isReturnable,
-      this.returnPeriod,
-      this.availSince,
-      this.outOfStockActions,
-      this.localization,
-      this.minQty,
-      this.maxQty,
-      this.qtyStep,
-      this.listQtyCount,
-      this.taxIds,
-      this.ageVerification,
-      this.ageLimit,
-      this.optionsType,
-      this.exceptionsType,
-      this.detailsLayout,
-      this.shippingParams,
-      this.buyNowUrl,
-      this.facebookObjType,
-      this.minPriceCalc,
-      this.useCalc,
-      this.langCode,
-      this.product,
-      this.shortname,
-      this.shortDescription,
-      this.fullDescription,
-      this.metaKeywords,
-      this.metaDescription,
-      this.searchWords,
-      this.pageTitle,
-      this.ageWarningMessage,
-      this.promoText,
-      this.price,
-      this.categoryIds,
-      this.popularity,
-      this.seoName,
-      this.seoPath,
-      this.basePrice,
-      this.mainCategory,
-      this.sharedProduct,
+        this.maxItemsInBox,
+        this.boxLength,
+        this.boxWidth,
+        this.boxHeight,
+        this.productId,
+        this.productCode,
+        this.productType,
+        this.status,
+        this.companyId,
+        this.listPrice,
+        this.amount,
+        this.weight,
+        this.length,
+        this.width,
+        this.height,
+        this.shippingFreight,
+        this.lowAvailLimit,
+        this.timestamp,
+        this.updatedTimestamp,
+        this.usergroupIds,
+        this.isEdp,
+        this.edpShipping,
+        this.unlimitedDownload,
+        this.tracking,
+        this.freeShipping,
+        this.zeroPriceAction,
+        this.isPbp,
+        this.isOp,
+        this.isOper,
+        this.isReturnable,
+        this.returnPeriod,
+        this.availSince,
+        this.outOfStockActions,
+        this.localization,
+        this.minQty,
+        this.maxQty,
+        this.qtyStep,
+        this.listQtyCount,
+        this.taxIds,
+        this.ageVerification,
+        this.ageLimit,
+        this.optionsType,
+        this.exceptionsType,
+        this.detailsLayout,
+        this.shippingParams,
+        this.buyNowUrl,
+        this.facebookObjType,
+        this.minPriceCalc,
+        this.useCalc,
+        this.langCode,
+        this.product,
+        this.shortname,
+        this.shortDescription,
+        this.fullDescription,
+        this.metaKeywords,
+        this.metaDescription,
+        this.searchWords,
+        this.pageTitle,
+        this.ageWarningMessage,
+        this.promoText,
+        this.price,
+        this.categoryIds,
+        this.popularity,
+        this.seoName,
+        this.seoPath,
+        this.basePrice,
+        this.mainCategory,
+        this.sharedProduct,
 //      this.productFeatures,
-      this.sharedBetweenCompanies,
-      this.mainImage,
-      this.images});
+        this.sharedBetweenCompanies,
+        this.mainImage,
+        this.images});
 
   BookDetailsModel.fromJson(Map<String, dynamic> json) {
     minItemsInBox = json['min_items_in_box'];
@@ -319,10 +339,10 @@ class ShippingParams {
 
   ShippingParams(
       {this.minItemsInBox,
-      this.maxItemsInBox,
-      this.boxLength,
-      this.boxWidth,
-      this.boxHeight});
+        this.maxItemsInBox,
+        this.boxLength,
+        this.boxWidth,
+        this.boxHeight});
 
   ShippingParams.fromJson(Map<String, dynamic> json) {
     minItemsInBox = json['min_items_in_box'];

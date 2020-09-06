@@ -43,7 +43,7 @@ class AddPromptPageState extends State<LoaderPage> {
   }
 
   animatedDialogueWithTextFieldAndButton(context) {
-    var mediaQuery = MediaQuery.of(context);
+//    var mediaQuery = MediaQuery.of(context);
     return WillPopScope(
       onWillPop: () async {
         return false;
